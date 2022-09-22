@@ -1,6 +1,7 @@
-const  express = require("express");
+require("dotenv").config();
+const express = require("express");
 const  cors = require("cors");
-const {readdirSync} = require("fs")
+const { readdirSync } = require("fs")
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.use(cors(options))
 // console.log(readdirSync("./routes"));
 readdirSync("./routes").map(route => app.use("/", require("./routes/" + route)))
 
-
-app.listen(8000, () => {
-  console.log("service is listing...");
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`service is running on ${PORT}... `);
 })

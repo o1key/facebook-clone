@@ -1,11 +1,10 @@
-import express from "express";
-import cors from "cors";
-
+const  express = require("express");
+const  cors = require("cors");
+const {readdirSync} = require("fs")
 
 const app = express();
 
 const allowed = ["http://localhost:3000","some other domain"]
-
 function options(req, res) {
   let temp;
   let origin = req.header("Origin");
@@ -24,9 +23,9 @@ function options(req, res) {
 
 app.use(cors(options))
 
-app.get("/", (req, res) => {
-  res.send("welcome from home")
-})
+// console.log(readdirSync("./routes"));
+readdirSync("./routes").map(route => app.use("/", require("./routes/" + route)))
+
 
 app.listen(8000, () => {
   console.log("service is listing...");

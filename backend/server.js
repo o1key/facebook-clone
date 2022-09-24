@@ -36,7 +36,7 @@ mongoose
   useUnifiedTopology:true,
   })
   .then(() => console.log("database connected successfully"))
-  .catch(error => console.log("error to connecting to database", error), process.exit(1))
+  .catch(error => console.log("error to connecting to database", error))
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

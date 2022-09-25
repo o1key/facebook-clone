@@ -5,6 +5,7 @@ const {
   validateUsername,
 } = require("../utils/validation");
 const bcrypt = require("bcrypt");
+const { generateToken } = require("../middleware/token");
 
 exports.register = async (req, res) => {
   try {
@@ -22,26 +23,26 @@ exports.register = async (req, res) => {
 
     const checkEmail = await User.findOne({ email });
     if (checkEmail)
-      res.status(400).json({
+      return res.status(400).json({
         message:
           "This email address already exists, try with a different email address",
       });
 
     if (!validateEmail(email))
-      res.status(400).json({ message: "Invalid email address" });
+      return res.status(400).json({ message: "Invalid email addreturn ress" });
 
     if (!validateLength(first_name, 3, 30)) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "first name must between 3 and 30 characters.",
       });
     }
     if (!validateLength(last_name, 3, 30)) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "last name must between 3 and 30 characters.",
       });
     }
     if (!validateLength(password, 6, 40)) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "password must be atleast 6 characters.",
       });
     }
@@ -60,6 +61,12 @@ exports.register = async (req, res) => {
       bDay,
       gender,
     }).save();
+
+    const emailVerificationToken = generateToken(
+      { id: user._id.toString() },
+      "30m" // expires in 30m
+    );
+    console.log(emailVerificationToken);
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });

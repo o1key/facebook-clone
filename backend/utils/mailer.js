@@ -37,7 +37,6 @@ exports.sendVerificationEmail = (email, name, url) => {
   };
   stmp.sendMail(mailOptions, (err, res) => {
     if (err) return err;
-    console.log(res);
     return res;
   });
 };

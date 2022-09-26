@@ -17,9 +17,7 @@ exports.validateUsername = async (username) => {
 
   do {
     let check = await User.findOne({ username });
-    // console.log((+new Date() * Math.random()).toString().substring(0, 1));
     username += (+new Date() * Math.random()).toString().substring(0, 1);
-    console.log(username);
     if (check) {
       a = true;
     } else {

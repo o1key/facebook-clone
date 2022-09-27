@@ -3,16 +3,20 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
+
 html {
   overflow-y: scroll;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 :root {
   --bg-primary: #fff;
   --bg-secondary: #f0f2f5;
@@ -34,4 +38,26 @@ a {
   --shadow-2: rgba(0, 0, 0, 0.1);
   --shadow-3: rgba(0, 0, 0, 0.3);
   --shadow-inset: rgba(255, 255, 255, 0.5);
+}
+
+/* buttons */
+.blue_btn {
+  /* display and box-model */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.5px 0.12px;
+  border: none;
+  border-radius: 7px;
+  /* text */
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  /* color */
+  background-color: var(--blue-color);
+  color: #fff;
+  /* other */
+  cursor: pointer;
+  outline: none;
 }

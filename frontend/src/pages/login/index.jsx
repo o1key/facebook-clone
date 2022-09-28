@@ -86,7 +86,7 @@ const Login = () => {
         <footer class="footer">
           <div class="waves">
             {[...Array(3)].map((x, i) => (
-              <div class="wave" id={`wave${i}`}></div>
+              <div key={i} className="wave" id={`wave${i}`}></div>
             ))}
           </div>
         </footer>

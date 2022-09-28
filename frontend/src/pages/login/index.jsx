@@ -82,7 +82,14 @@ const Login = () => {
             </Link>
           </div>
         </div>
-        <div className="register"></div>
+        <div className="register" />
+        <footer class="footer">
+          <div class="waves">
+            {[...Array(3)].map((x, i) => (
+              <div class="wave" id={`wave${i}`}></div>
+            ))}
+          </div>
+        </footer>
       </div>
     </div>
   );

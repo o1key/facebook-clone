@@ -1,9 +1,10 @@
 .login_wrapper {
   background: var(--bg-secondary);
+  min-height: 100vh;
 }
 
 .login_wrap {
-  height: 78vh;
+  height: 75vh;
   color: var(--color-primary);
 }
 
@@ -73,4 +74,39 @@
 
 .sign_extra b {
   margin-right: 5px;
+}
+
+/* media queries */
+@media (min-width:850px) {
+  .login_wrap {
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .login_1 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: -1.7rem;
+  }
+
+  .login_1 img {
+    width: 300px;
+    margin-left: -1.7rem;
+  }
+
+  .login_1 span {
+    font-size: 28px;
+  }
+
+  .login_2_wrap {
+    width: 400px;
+  }
+
+  .input_wrap {
+    width: 360px !important;
+  }
 }

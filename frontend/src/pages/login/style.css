@@ -326,7 +326,7 @@
 @media (min-width: 850px) {
   .login_wrap {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     max-width: 1000px;
     margin: 0 auto;

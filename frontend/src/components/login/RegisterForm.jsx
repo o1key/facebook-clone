@@ -1,16 +1,16 @@
 import { Form, Formik } from "formik";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import RegisterInput from "../inputs/registerinput";
 import DateOfBirthSelect from "./DateOfBirthSelect";
 import GenderSelect from "./GenderSelect";
+import { useDispatch } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-export function RegisterForm() {
+export function RegisterForm({ setVisible }) {
   const userInfos = {
     first_name: "",
     last_name: "",
@@ -120,7 +120,7 @@ export function RegisterForm() {
     <div className="blur">
       <div className="register">
         <div className="register_header">
-          <i className="exit_icon"></i>
+          <i className="exit_icon" onClick={() => setVisible(false)} />
           <span>Sign Up</span>
           <span>it's quick and easy</span>
         </div>

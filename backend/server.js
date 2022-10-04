@@ -7,25 +7,9 @@ const app = express();
 
 // json
 app.use(express.json());
-app.use(cors(options));
-
 // cors
-const allowed = ["http://localhost:3000", "some other domain"];
-function options(req, res) {
-  let temp;
-  let origin = req.header("Origin");
-  if (allowed.indexOf(origin) > -1) {
-    temp = {
-      origin: true,
-      optionSuccessStatus: 200,
-    };
-  } else {
-    temp = {
-      origin: "stupid",
-    };
-  }
-  res(null, temp);
-}
+app.use(cors());
+
 // routes
 // console.log(readdirSync("./routes"));
 readdirSync("./routes").map((route) =>

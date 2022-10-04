@@ -1,9 +1,14 @@
 import { Form, Formik } from "formik";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import RegisterInput from "../inputs/registerinput";
 import DateOfBirthSelect from "./DateOfBirthSelect";
 import GenderSelect from "./GenderSelect";
+import ClipLoader from "react-spinners/ClipLoader";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export function RegisterForm() {
   const userInfos = {
@@ -30,6 +35,13 @@ export function RegisterForm() {
   } = user;
   const [dateError, setDateError] = useState("");
   const [genderError, setGenderError] = useState("");
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const yearTemp = new Date().getFullYear();
   const handleRegisterChange = (e) => {
@@ -73,6 +85,36 @@ export function RegisterForm() {
       .min(6, "Password must be atleast 6 characters.")
       .max(36, "Password can't be more than 36 characters"),
   });
+
+  const registerSubmit = async () => {
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/register`,
+        {
+          first_name,
+          last_name,
+          email,
+          password,
+          bYear,
+          bMonth,
+          bDay,
+          gender,
+        }
+      );
+      setError("");
+      setSuccess(data.message);
+      const { message, ...rest } = data;
+      setTimeout(() => {
+        dispatch({ type: "LOGIN", payload: rest });
+        Cookies.set("user", JSON.stringify(rest));
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      setLoading(false);
+      setSuccess("");
+      setError(error.response.data.message);
+    }
+  };
 
   return (
     <div className="blur">
@@ -118,6 +160,7 @@ export function RegisterForm() {
             } else {
               setDateError("");
               setGenderError("");
+              registerSubmit();
             }
           }}
         >
@@ -183,9 +226,18 @@ export function RegisterForm() {
                 and <span>Cookie Policy.</span> You may receive SMS
                 notifications from us and can opt out at any time.
               </div>
+              <ClipLoader
+                color="#1876f2"
+                loading={loading}
+                size={35}
+                aria-label="Loading Spinner"
+              />
               <div className="reg_btn_wrapper">
                 <button className="blue_btn open_signup">Sign Up</button>
               </div>
+
+              {error && <div className="error_text">{error}</div>}
+              {success && <div className="success_text">{success}</div>}
             </Form>
           )}
         </Formik>

@@ -20,8 +20,6 @@ const color = "#65676b";
 const Header = () => {
   const { user } = useSelector((user) => ({ ...user }));
 
-  console.log(user);
-
   return (
     <header>
       <div className="header_left">
@@ -58,10 +56,6 @@ const Header = () => {
         </Link>
       </div>
       <div className="header_right">
-        <Link to="/profile" className="profile_link hover1">
-          <img src={user?.picture} alt="" />
-          <span>{user?.first_name}</span>
-        </Link>
         <div className="circle_icon hover1">
           <Menu />
         </div>
@@ -75,6 +69,10 @@ const Header = () => {
         <div className="circle_icon hover1">
           <ArrowDown />
         </div>
+        <Link to="/profile" className="profile_link hover1">
+          <img src={user?.picture} alt="" />
+          <span>{user?.first_name}</span>
+        </Link>
       </div>
     </header>
   );

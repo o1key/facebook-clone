@@ -16,14 +16,22 @@ import {
 import { useSelector } from "react-redux";
 import { SearchMenu } from "./SearchMenu";
 import { useState } from "react";
+import AllMenu from "./AllMenu";
+import { useRef } from "react";
+import useClickOutside from "../../share/hooks/useClickOutside";
 
 const color = "#65676b";
 
 const Header = () => {
   const [showSearchMenu, setShowSearchMenu] = useState(false);
+  const [showAllMenu, setShowAllMenu] = useState(false);
+  const allMenu = useRef(null);
+
+  useClickOutside(allMenu, () => {
+    setShowAllMenu(false);
+  });
 
   const { user } = useSelector((user) => ({ ...user }));
-
   return (
     <header>
       <div className="header_left">
@@ -67,9 +75,13 @@ const Header = () => {
           <Gaming color={color} />
         </Link>
       </div>
-      <div className="header_right">
-        <div className="circle_icon hover1">
+      <div className="header_right" ref={allMenu}>
+        <div
+          className="circle_icon hover1"
+          onClick={() => setShowAllMenu(!showAllMenu)}
+        >
           <Menu />
+          {showAllMenu && <AllMenu />}
         </div>
         <div className="circle_icon hover1">
           <Messenger />

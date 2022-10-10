@@ -140,6 +140,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%
 }
 
 .settings_filled_icon {
@@ -150,6 +152,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%
 }
 
 .help_filled_icon {
@@ -160,6 +164,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%
 }
 
 .dark_filled_icon {
@@ -170,6 +176,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%
 }
 
 .logout_filled_icon {
@@ -180,6 +188,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%
 }
 
 .right_icon {
@@ -201,6 +211,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%;
 }
 
 .privacy_shortcuts_icon {
@@ -211,6 +223,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%;
 }
 
 .activity_log_icon {
@@ -221,6 +235,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%;
 }
 
 .news_icon {
@@ -231,6 +247,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%;
 }
 
 .language_icon {
@@ -241,6 +259,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%;
 }
 
 .arrow_back_icon {
@@ -261,6 +281,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%;
 }
 
 .email_icon {
@@ -271,6 +293,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%
 }
 
 .info_filled_icon {
@@ -281,6 +305,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%
 }
 
 .keyboard_icon {
@@ -291,6 +317,8 @@
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  position: absolute;
+  top: 20%
 }
 
 .amm_s_ic {
@@ -819,4 +847,16 @@
   display: inline-block;
   height: 21px;
   width: 21px;
+}
+
+.compact_icon {
+  background-image: url(../../../public/icons/icons38.png);
+  background-position: 0px -130px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: absolute;
+  top: 20%
 }

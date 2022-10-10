@@ -19,19 +19,23 @@ import { useState } from "react";
 import AllMenu from "./AllMenu";
 import { useRef } from "react";
 import useClickOutside from "../../share/hooks/useClickOutside";
+import UserMenu from "./userMenu";
 
 const color = "#65676b";
 
 const Header = () => {
+  const { user } = useSelector((user) => ({ ...user }));
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showAllMenu, setShowAllMenu] = useState(false);
-  const allMenu = useRef(null);
-
-  useClickOutside(allMenu, () => {
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const allmenu = useRef(null);
+  const usermenu = useRef(null);
+  useClickOutside(allmenu, () => {
     setShowAllMenu(false);
   });
-
-  const { user } = useSelector((user) => ({ ...user }));
+  useClickOutside(usermenu, () => {
+    setShowUserMenu(false);
+  });
   return (
     <header>
       <div className="header_left">
@@ -49,8 +53,8 @@ const Header = () => {
           <Search color={color} />
           <input
             type="text"
-            className="hide_input"
             placeholder="Search Facebook"
+            className="hide_input"
           />
         </div>
       </div>
@@ -58,7 +62,7 @@ const Header = () => {
         <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu} />
       )}
       <div className="header_middle">
-        <Link to="/" className="middle_icon hover1">
+        <Link to="/" className="middle_icon active">
           <HomeActive />
         </Link>
         <Link to="/" className="middle_icon hover1">
@@ -75,12 +79,16 @@ const Header = () => {
           <Gaming color={color} />
         </Link>
       </div>
-      <div className="header_right" ref={allMenu}>
-        <div
-          className="circle_icon hover1"
-          onClick={() => setShowAllMenu(!showAllMenu)}
-        >
-          <Menu />
+      <div className="header_right">
+        <div className="circle_icon hover1" ref={allmenu}>
+          <div
+            onClick={() => {
+              setShowAllMenu((prev) => !prev);
+            }}
+          >
+            <Menu />
+          </div>
+
           {showAllMenu && <AllMenu />}
         </div>
         <div className="circle_icon hover1">
@@ -90,8 +98,16 @@ const Header = () => {
           <Notifications />
           <div className="right_notification">5</div>
         </div>
-        <div className="circle_icon hover1">
-          <ArrowDown />
+        <div className="circle_icon hover1" ref={usermenu}>
+          <div
+            onClick={() => {
+              setShowUserMenu((prev) => !prev);
+            }}
+          >
+            <ArrowDown />
+          </div>
+
+          {showUserMenu && <UserMenu user={user} />}
         </div>
         <Link to="/profile" className="profile_link hover1">
           <img src={user?.picture} alt="" />

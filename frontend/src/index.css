@@ -91,3 +91,17 @@ a {
 }
 
 /* card */
+/* Circles */
+.small_circle {
+  position: relative;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin-right: 11px;
+  background-color: var(--bg-third);
+  cursor: pointer;
+}
+
+/* Circles */

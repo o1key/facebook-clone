@@ -11,7 +11,6 @@ const Home = () => {
   return (
     <div>
       <Header />
-      {visible && <div className="card" ref={el}></div>}
     </div>
   );
 };

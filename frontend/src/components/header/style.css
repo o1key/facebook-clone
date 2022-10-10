@@ -656,3 +656,14 @@ header {
 }
 
 /*---responsive----------*/
+
+/* active header */
+.active_header {
+  background-color: var(--light-blue-color);
+}
+
+.active_header {
+  fill: var(--blue-color);
+}
+
+/* active header */

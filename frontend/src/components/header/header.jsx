@@ -80,7 +80,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="header_right">
-        <div className="circle_icon hover1" ref={allmenu}>
+        <div className="circle_icon  hover1" ref={allmenu}>
           <div
             onClick={() => {
               setShowAllMenu((prev) => !prev);
@@ -98,14 +98,23 @@ const Header = () => {
           <Notifications />
           <div className="right_notification">5</div>
         </div>
-        <div
-          className="circle_icon profile hover1"
-          ref={usermenu}
-          onClick={() => {
-            setShowUserMenu((prev) => !prev);
-          }}
-        >
-          <div />
+        <div className="circle_icon profile hover1" ref={usermenu}>
+          <div
+            onClick={() => {
+              setShowUserMenu((prev) => !prev);
+            }}
+          >
+            <img
+              style={{
+                width: "40px",
+                height: "40px",
+                objectFit: "cover",
+                borderRadius: "50%",
+              }}
+              src={user?.picture}
+              alt=""
+            />
+          </div>
 
           {showUserMenu && <UserMenu user={user} />}
         </div>

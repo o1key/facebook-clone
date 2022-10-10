@@ -98,21 +98,17 @@ const Header = () => {
           <Notifications />
           <div className="right_notification">5</div>
         </div>
-        <div className="circle_icon hover1" ref={usermenu}>
-          <div
-            onClick={() => {
-              setShowUserMenu((prev) => !prev);
-            }}
-          >
-            <ArrowDown />
-          </div>
+        <div
+          className="circle_icon profile hover1"
+          ref={usermenu}
+          onClick={() => {
+            setShowUserMenu((prev) => !prev);
+          }}
+        >
+          <div />
 
           {showUserMenu && <UserMenu user={user} />}
         </div>
-        <Link to="/profile" className="profile_link hover1">
-          <img src={user?.picture} alt="" />
-          <span>{user?.first_name}</span>
-        </Link>
       </div>
     </header>
   );

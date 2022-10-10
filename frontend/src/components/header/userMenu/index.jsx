@@ -5,7 +5,7 @@ import HelpSupport from "./HelpSupport";
 import SettingsPrivacy from "./SettingsPrivacy";
 
 const UserMenu = ({ user }) => {
-  const [visible, setVisible] = useState(1);
+  const [visible, setVisible] = useState(0);
   return (
     <div className="mmenu">
       {visible === 0 && (

@@ -11,7 +11,7 @@ const UserMenu = ({ user }) => {
       {visible === 0 && (
         <div>
           <Link to="/profile" className="mmenu_header hover3">
-            <img src={user?.picture} alt="" />
+            <img src={user?.picture ?? "https://i.gifer.com/838d.gif"} alt="" />
             <div className="mmenu_col">
               <span>
                 {user?.first_name} {user?.last_name}

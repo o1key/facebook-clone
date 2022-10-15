@@ -119,7 +119,7 @@ const Header = () => {
                 objectFit: "cover",
                 borderRadius: "50%",
               }}
-              src={user?.picture}
+              src={user?.picture ?? "https://i.gifer.com/838d.gif"}
               alt=""
             />
           </div>

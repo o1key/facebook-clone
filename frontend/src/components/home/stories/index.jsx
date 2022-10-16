@@ -3,10 +3,37 @@ import "./style.css";
 import Story from "./Story";
 import { stories } from "../../../data/Home";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+
 export default function Stories() {
+  const query1175px = useMediaQuery({
+    query: "(max-width:1175px)",
+  });
+
+  const query1030px = useMediaQuery({
+    query: "(max-width:1030px)",
+  });
+
+  const query960px = useMediaQuery({
+    query: "(max-width:960px)",
+  });
+
+  const query885px = useMediaQuery({
+    query: "(max-width:885px)",
+  });
+
+  const max = query885px
+    ? 5
+    : query960px
+    ? 4
+    : query1030px
+    ? 5
+    : query1175px
+    ? 4
+    : stories.length;
+
   const [data, setData] = useState(stories);
   const [index, setIndex] = useState(0);
-  console.log(index);
   useEffect(() => {
     let lastIndex = data.length - 1;
     if (index < 0) {
@@ -30,7 +57,7 @@ export default function Stories() {
         </div>
         <div className="story_create_text">Create Story</div>
       </div>
-      {stories.map((story, personIndex) => {
+      {stories.slice(0, max).map((story, personIndex) => {
         let position = "nextSlide";
         if (
           personIndex === index - 1 ||

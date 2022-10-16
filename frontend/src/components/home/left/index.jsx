@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { left } from "../../../data/LeftLink";
+import { left } from "../../../data/Home";
 import LeftLink from "./LeftLink";
 import { ArrowDown1 } from "../../../svg";
 import "./style.css";

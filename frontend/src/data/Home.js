@@ -110,3 +110,36 @@ export const left = [
     img: "weather",
   },
 ];
+
+export const stories = [
+  {
+    id: 0,
+    profile_picture: "../../stories/profile1.jpg",
+    profile_name: "Elon Musk",
+    image: "../../stories/1.jpg",
+  },
+  {
+    id: 1,
+    profile_picture: "../../stories/profile2.jpg",
+    profile_name: "South park",
+    image: "../../stories/2.png",
+  },
+  {
+    id: 2,
+    profile_picture: "../../stories/profile3.png",
+    profile_name: "The Sopranos",
+    image: "../../stories/3.jpg",
+  },
+  {
+    id: 3,
+    profile_picture: "../../stories/profile4.jfif",
+    profile_name: "Football World",
+    image: "../../stories/4.jpg",
+  },
+  {
+    id: 4,
+    profile_picture: "../../stories/profile5.png",
+    profile_name: "The Witcher Wild Hunt",
+    image: "../../stories/5.jfif",
+  },
+];

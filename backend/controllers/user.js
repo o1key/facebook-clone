@@ -8,6 +8,7 @@ const {
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../middleware/token");
 const { sendVerificationEmail } = require("../utils/mailer");
+const { json } = require("express");
 
 // register
 exports.register = async (req, res) => {
@@ -140,4 +141,10 @@ exports.login = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+// auth
+exports.auth = async (req, res) => {
+  console.log(req.user);
+  res.send("hello user");
 };

@@ -89,31 +89,17 @@ exports.register = async (req, res) => {
   }
 };
 
-// // activate account
-// exports.activeAccount = async (req, res) => {
-//   const { token } = req.body;
-//   const user = jwt.verify(token, process.env.TOKEN_SECRET);
-
-//   const check = await User.findById(user.id);
-//   if (check.verified === true) {
-//     return res.status(400).json({
-//       message: "This email is already activated",
-//     });
-//   } else {
-//     await User.findByIdAndUpdate(user.id, {
-//       verify: true,
-//     });
-//     return res.status(200).json({
-//       message: "Account has been activated",
-//     });
-//   }
-// };
-
 exports.activeAccount = async (req, res) => {
   try {
     const { token } = req.body;
     const user = jwt.verify(token, process.env.TOKEN_SECRET);
     const check = await User.findById(user.id);
+    const validUser = req.user.id;
+    if (validUser !== user.id) {
+      return res.status(400).json({
+        message: "You don't have the authorization to complete this operation.",
+      });
+    }
     if (check.verified) {
       return res.status(400).json({
         message: "This email is already activated",

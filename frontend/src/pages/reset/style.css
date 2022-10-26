@@ -81,6 +81,10 @@
 .reset_form_btns a,
 .reset_form_btns button {
   width: 90px;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 7px;
+  text-align: center;
 }
 
 .reset_grid {

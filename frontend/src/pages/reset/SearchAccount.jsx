@@ -9,7 +9,7 @@ export default function SearchAccount({
   error,
   setError,
   setLoading,
-  setUserInfos,
+  setUserInfo,
   setVisible,
 }) {
   const validateEmail = Yup.object({
@@ -27,7 +27,7 @@ export default function SearchAccount({
         { email }
       );
       setVisible(1);
-      setUserInfos(data);
+      setUserInfo(data);
       setError("");
     } catch (error) {
       setLoading(false);

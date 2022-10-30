@@ -3,14 +3,41 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LoginInput from "../../components/inputs/logininput";
 import * as Yup from "yup";
+import axios from "axios";
 
-const CodeVerification = ({ user, code, setCode, error }) => {
+const CodeVerification = ({
+  userInfo,
+  code,
+  setCode,
+  error,
+  setError,
+  loading,
+  setLoading,
+  setVisible,
+}) => {
   const validateCode = Yup.object({
     code: Yup.string()
       .required("Code is required")
       .min("5", "Code must be 5 characters")
       .max("5", "Code must be 5 characters"),
   });
+
+  const verifyCode = async () => {
+    const { email } = userInfo;
+    try {
+      setLoading(true);
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/validateResetCode`, {
+        email,
+        code,
+      });
+      setVisible(3);
+      setError("");
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.message);
+    }
+  };
 
   return (
     <div className="reset_form">
@@ -38,8 +65,8 @@ const CodeVerification = ({ user, code, setCode, error }) => {
               <Link to="/login" className="gray_btn">
                 Cancel
               </Link>
-              <button className="blue_btn" type="submit">
-                Search
+              <button onClick={verifyCode} className="blue_btn" type="submit">
+                Continue
               </button>
             </div>
           </Form>

@@ -7,8 +7,9 @@ const {
 } = require("../utils/validation");
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../middleware/token");
-const { sendVerificationEmail } = require("../utils/mailer");
-const { findOne } = require("../models/User");
+const { sendVerificationEmail, sendResetCode } = require("../utils/mailer");
+const Code = require("../models/Code");
+const generateCode = require("../middleware/generateCode");
 
 // register
 exports.register = async (req, res) => {
@@ -196,5 +197,43 @@ exports.findUser = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+// send Reset Password Code
+exports.sendResetPasswordCode = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email }).select("-password");
+    await Code.findOneAndRemove({ user: user._id });
+    const code = generateCode(5);
+    const savedCode = await new Code({
+      code,
+      user: user._id,
+    }).save();
+    sendResetCode(user.email, user.first_name, code);
+    return res.status(200).json({
+      message: "Email reset code has been sent to your email",
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.validateResetCode = async (req, res) => {
+  try {
+    const { email, code } = req.body;
+    const user = await User.findOne({ email });
+    const dbCode = await Code.findOne({ user: user._id });
+    if (dbCode.code !== code) {
+      return res.status(400).json({
+        message: "Verification code is wrong...!",
+      });
+    }
+    return res.status(200).json({ message: "ok" });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };

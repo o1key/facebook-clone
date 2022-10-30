@@ -14,13 +14,13 @@ const Reset = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(0);
-  const [laoding, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [conf_password, setConf_password] = useState("");
   const [error, setError] = useState("");
-  const [userInfos, setUserInfos] = useState("");
+  const [userInfo, setUserInfo] = useState("");
   const logout = () => {
     Cookies.set("user", "");
     dispatch({
@@ -28,7 +28,7 @@ const Reset = () => {
     });
     navigate("/login");
   };
-  console.log(userInfos);
+  console.log(userInfo);
   return (
     <div className="reset">
       <div className="reset_header">
@@ -61,17 +61,32 @@ const Reset = () => {
             error={error}
             setError={setError}
             setLoading={setLoading}
-            setUserInfos={setUserInfos}
+            setUserInfo={setUserInfo}
             setVisible={setVisible}
           />
         )}
-        {visible === 1 && userInfos && <SendEmail userInfos={userInfos} />}
+        {visible === 1 && userInfo && (
+          <SendEmail
+            userInfo={userInfo}
+            setUserInfo={setUserInfo}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            setVisible={setVisible}
+            email={email}
+          />
+        )}
         {visible === 2 && (
           <CodeVerification
-            user={user}
+            userInfo={userInfo}
             code={code}
             setCode={setCode}
             error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            setVisible={setVisible}
           />
         )}
         {visible === 3 && (

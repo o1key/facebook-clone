@@ -91,10 +91,16 @@ const Reset = () => {
         )}
         {visible === 3 && (
           <ChangePassword
+            userInfo={userInfo}
             password={password}
             conf_password={conf_password}
             setConf_password={setConf_password}
             setPassword={setPassword}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            setVisible={setVisible}
           />
         )}
       </div>

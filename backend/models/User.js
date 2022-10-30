@@ -137,4 +137,4 @@ const userSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Users", userSchema);
+module.exports = mongoose.model("Users", userSchema, "users");

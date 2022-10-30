@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 export function RegisterForm({ setVisible }) {
-  const userInfos = {
+  const userInfo = {
     first_name: "",
     last_name: "",
     email: "",
@@ -22,7 +22,7 @@ export function RegisterForm({ setVisible }) {
     bDay: new Date().getDate(),
     gender: "",
   };
-  const [user, setUser] = useState(userInfos);
+  const [user, setUser] = useState(userInfo);
   const {
     first_name,
     last_name,

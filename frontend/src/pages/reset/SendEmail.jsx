@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SendEmail = ({ user }) => {
+const SendEmail = ({ user, userInfos }) => {
   return (
     <div className="reset_form">
       <div className="reset_form_header">Find Your Password</div>
@@ -14,18 +14,13 @@ const SendEmail = ({ user }) => {
             <input type="radio" name="" id="email" checked readOnly />
             <div className="label_col">
               <span>Send Code via email</span>
-              <span>email@email.com</span>
+              <span>{userInfos.email}</span>
             </div>
           </label>
         </div>
         <div className="reset_right">
-          <img
-            src={
-              user?.picture || "https://www.w3schools.com/howto/img_avatar.png"
-            }
-            alt=""
-          />
-          <span>email@email.com</span>
+          <img src={userInfos?.picture} alt="" />
+          <span>{userInfos.email}</span>
           <span>Facebook user</span>
         </div>
       </div>

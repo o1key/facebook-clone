@@ -1,22 +1,44 @@
+import axios from "axios";
 import { Form, Formik } from "formik";
-import React from "react";
 import { Link } from "react-router-dom";
-import LoginInput from "../../components/inputs/logininput";
 import * as Yup from "yup";
-
-const SearchAccount = ({ email, setEmail, error }) => {
+import LoginInput from "../../components/inputs/logininput";
+export default function SearchAccount({
+  email,
+  setEmail,
+  error,
+  setError,
+  setLoading,
+  setUserInfos,
+  setVisible,
+}) {
   const validateEmail = Yup.object({
     email: Yup.string()
-      .required("Email address is required")
-      .email("Must be a valid email address")
-      .max(50, "Email add can't more than 50 characters"),
+      .required("Email address ir required.")
+      .email("Must be a valid email address.")
+      .max(50, "Email address can't be more than 50 characters."),
   });
+  const handleSearch = async () => {
+    try {
+      setLoading(true);
 
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/findUser`,
+        { email }
+      );
+      setVisible(1);
+      setUserInfos(data);
+      setError("");
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.message);
+    }
+  };
   return (
     <div className="reset_form">
       <div className="reset_form_header">Find Your Account</div>
       <div className="reset_form_text">
-        Please enter your emial address or mobile number to search for your
+        Please enter your email address or mobile number to search for your
         account.
       </div>
       <Formik
@@ -25,6 +47,7 @@ const SearchAccount = ({ email, setEmail, error }) => {
           email,
         }}
         validationSchema={validateEmail}
+        onSubmit={handleSearch}
       >
         {(formik) => (
           <Form>
@@ -39,7 +62,7 @@ const SearchAccount = ({ email, setEmail, error }) => {
               <Link to="/login" className="gray_btn">
                 Cancel
               </Link>
-              <button className="blue_btn" type="submit">
+              <button type="submit" className="blue_btn">
                 Search
               </button>
             </div>
@@ -48,6 +71,4 @@ const SearchAccount = ({ email, setEmail, error }) => {
       </Formik>
     </div>
   );
-};
-
-export default SearchAccount;
+}

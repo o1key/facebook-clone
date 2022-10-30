@@ -6,27 +6,29 @@ import ChangePassword from "./ChangePassword";
 import CodeVerification from "./CoderVerification";
 import SearchAccount from "./SearchAccount";
 import SendEmail from "./SendEmail";
+import Footer from "../../components/login/Footer";
 import "./style.css";
 
 const Reset = () => {
   const { user } = useSelector((state) => ({ ...state }));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [visible, setVisible] = useState(0);
+  const [laoding, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [conf_password, setConf_password] = useState("");
   const [error, setError] = useState("");
-  const [visible, setVisible] = useState(4);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const Logout = () => {
+  const [userInfos, setUserInfos] = useState("");
+  const logout = () => {
     Cookies.set("user", "");
     dispatch({
       type: "LOGOUT",
     });
     navigate("/login");
   };
+  console.log(userInfos);
   return (
     <div className="reset">
       <div className="reset_header">
@@ -36,7 +38,12 @@ const Reset = () => {
             <Link to="/profile">
               <img src={user.picture} alt="" />
             </Link>
-            <button className="blue_btn" onClick={Logout}>
+            <button
+              className="blue_btn"
+              onClick={() => {
+                logout();
+              }}
+            >
               Logout
             </button>
           </div>
@@ -46,30 +53,37 @@ const Reset = () => {
           </Link>
         )}
       </div>
-
       <div className="reset_wrap">
         {visible === 0 && (
-          <SearchAccount email={email} setEmail={setEmail} error={error} />
+          <SearchAccount
+            email={email}
+            setEmail={setEmail}
+            error={error}
+            setError={setError}
+            setLoading={setLoading}
+            setUserInfos={setUserInfos}
+            setVisible={setVisible}
+          />
         )}
-        {visible === 1 && <SendEmail user={user} />}
+        {visible === 1 && userInfos && <SendEmail userInfos={userInfos} />}
         {visible === 2 && (
           <CodeVerification
+            user={user}
             code={code}
             setCode={setCode}
             error={error}
-            user={user}
           />
         )}
-        {visible === 4 && (
+        {visible === 3 && (
           <ChangePassword
-            error={error}
             password={password}
+            conf_password={conf_password}
+            setConf_password={setConf_password}
             setPassword={setPassword}
-            confirmPassword={confirmPassword}
-            setConfirmPassword={setConfirmPassword}
           />
         )}
       </div>
+      <Footer />
     </div>
   );
 };

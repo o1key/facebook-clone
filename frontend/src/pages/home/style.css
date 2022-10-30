@@ -200,14 +200,21 @@
 /* Activate popup */
 .popup {
   position: relative;
-  background: var(--bg-primary);
+  <<<<<<< HEAD background: var(--bg-primary);
   box-shadow: 0 1px 2px var(--shadow-1);
   width: 30vw;
   height: 200px;
   top: 40%;
   left: 50%;
   position: fixed;
-  transform: translate(-50%, -50%);
+  =======background-color: var(--bg-primary);
+  box-shadow: 0 1px 2px var(--shaw-1);
+  width: 30vw;
+  height: 200px;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  >>>>>>>0d331303d32a6fe88d57121327f5e127d513dfb2 transform: translate(-50%, -50%);
   z-index: 99;
   text-align: center;
 }
@@ -224,6 +231,11 @@
 .popup_message {
   padding: 15px;
   font-weight: 500;
+  <<<<<<< HEAD
 }
 
 /* Activate popup */
+=======
+}
+
+>>>>>>>0d331303d32a6fe88d57121327f5e127d513dfb2

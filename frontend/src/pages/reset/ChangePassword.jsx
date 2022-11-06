@@ -22,17 +22,18 @@ const ChangePassword = ({
       .required(
         "Enter a combination of at least six numbers,letters and punctuation marks(such as ! and &)."
       )
-      .min(6, "Password must be at least 6 characters.")
+      .min(6, "Password must be atleast 6 characters.")
       .max(36, "Password can't be more than 36 characters"),
 
     confirmPassword: Yup.string()
-      .required("Confirm your password")
+      .required("Confirm your password.")
       .oneOf([Yup.ref("password")], "Passwords must match."),
   });
 
+  const { email } = userInfo;
   const changePassword = async () => {
     try {
-      const { email } = userInfo;
+      setLoading(true);
       await axios.post(`${process.env.REACT_APP_BASE_URL}/changePassword`, {
         email,
         password,
@@ -56,29 +57,32 @@ const ChangePassword = ({
           confirmPassword,
         }}
         validationSchema={validatePassword}
-        onSubmit={changePassword}
+        onSubmit={() => {
+          changePassword();
+        }}
       >
         {(formik) => (
           <Form>
             <LoginInput
-              type="text"
+              type="password"
               name="password"
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder="New password"
             />
             <LoginInput
-              type="text"
+              type="password"
               name="confirmPassword"
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm Password"
+              placeholder="Confirm new password"
+              bottom
             />
             {error && <div className="error_text">{error}</div>}
             <div className="reset_form_btns">
               <Link to="/login" className="gray_btn">
                 Cancel
               </Link>
-              <button className="blue_btn" type="submit">
-                Search
+              <button type="submit" className="blue_btn">
+                Continue
               </button>
             </div>
           </Form>

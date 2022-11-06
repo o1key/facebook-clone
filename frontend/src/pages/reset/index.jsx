@@ -18,7 +18,7 @@ const Reset = () => {
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
-  const [conf_password, setConf_password] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [userInfo, setUserInfo] = useState("");
   const logout = () => {
@@ -93,8 +93,8 @@ const Reset = () => {
           <ChangePassword
             userInfo={userInfo}
             password={password}
-            conf_password={conf_password}
-            setConf_password={setConf_password}
+            confirmPassword={confirmPassword}
+            setConfirmPassword={setConfirmPassword}
             setPassword={setPassword}
             error={error}
             setError={setError}

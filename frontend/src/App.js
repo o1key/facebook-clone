@@ -13,7 +13,7 @@ function App() {
   const { user } = useSelector((state) => ({ ...state }));
   return (
     <>
-      f<CreatePostPopup user={user} />
+      <CreatePostPopup user={user} />
       <Routes>
         <Route element={<LoggedInRoutes />}>
           <Route path="/profile" element={<Profile />} exact />

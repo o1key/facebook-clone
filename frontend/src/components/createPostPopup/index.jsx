@@ -7,7 +7,9 @@ import "./style.css";
 export default function CreatePostPopup({ user }) {
   const [text, setText] = useState("");
   const [images, setImages] = useState([]);
-  const [showPrev, setShowPrev] = useState(true);
+  const [showPrev, setShowPrev] = useState(false);
+  const [background, setBackground] = useState("");
+
   return (
     <div className="blur">
       <div className="postBox">
@@ -44,6 +46,8 @@ export default function CreatePostPopup({ user }) {
               user={user}
               setText={setText}
               showPrev={showPrev}
+              background={background}
+              setBackground={setBackground}
             />
           </>
         ) : (
@@ -57,7 +61,7 @@ export default function CreatePostPopup({ user }) {
             setShowPrev={setShowPrev}
           />
         )}
-        <AddToYourPost />
+        <AddToYourPost setShowPrev={setShowPrev} />
         <button className="post_submit">Post</button>
       </div>
     </div>

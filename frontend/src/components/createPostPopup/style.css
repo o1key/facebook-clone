@@ -442,3 +442,29 @@
   height: 360px;
   margin-top: 10px;
 }
+
+/* Post Error */
+.postError {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-primary);
+  opacity: 0.8;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  color: #b94a48;
+  animation: anim 0.4s;
+  border-radius: 5px;
+}
+
+@keyframes anim {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}

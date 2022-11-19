@@ -7,11 +7,13 @@ import { EmojiPickerBackgrounds } from "./EmojiPickerBackgrounds";
 import ImagePreview from "./ImagePreview";
 import PulseLoader from "react-spinners/PulseLoader";
 import "./style.css";
+import PostError from "./PostError";
 
 export default function CreatePostPopup({ user, setVisible }) {
   const [text, setText] = useState("");
   const [images, setImages] = useState([]);
   const [showPrev, setShowPrev] = useState(false);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [background, setBackground] = useState("");
 
@@ -25,24 +27,23 @@ export default function CreatePostPopup({ user, setVisible }) {
     if (background) {
       setLoading(true);
       console.log(user.token);
-      const res = await createPost(
-        null,
-        background,
-        text,
-        null,
-        user.id,
-        user.token
-      );
+      const res = await createPost(background, text, null, user.id, user.token);
       setLoading(false);
-      setBackground("");
-      setText("");
-      setVisible(false);
+      console.log(res, "res");
+      if (res === "ok") {
+        setBackground("");
+        setText("");
+        setVisible(false);
+      } else {
+        setError(res);
+      }
     }
   };
 
   return (
     <div className="blur">
       <div className="postBox" ref={popup}>
+        {error && <PostError error={error} setError={setError} />}
         <div className="box_header">
           <div className="small_circle" onClick={() => setVisible(false)}>
             <i
